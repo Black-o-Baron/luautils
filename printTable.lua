@@ -2,7 +2,7 @@
 Credits: Alundaio (https://stackoverflow.com/users/5113346/alundaio)
 Stack Overflow Link: https://stackoverflow.com/a/42062321
 ]]
-local function printTable(node)
+function printTable(node)
     local cache, stack, output = {},{},{}
     local depth = 1
     local output_str = "{\n"
