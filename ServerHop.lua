@@ -1,7 +1,7 @@
 function ServerHop(PlaceId, joinLowPlayerServer)
     print("ServerHop(): PlaceId: " .. tostring(PlaceId) .. " | joinLowPlayerServer: " .. tostring(joinLowPlayerServer))
-    local Players = game:GetService("Players")
     local HttpService = game:GetService("HttpService")
+    local Players = game:GetService("Players")
     local LocalPlayer = Players.LocalPlayer
     local retries = 0
     local config = {
@@ -41,12 +41,12 @@ function ServerHop(PlaceId, joinLowPlayerServer)
                 game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], LocalPlayer)
             else
                 retries = retries + 1
-                print("ServerHop(): Error in response. Retrying " .. tostring(retries) .. "/3.")
+                print("ServerHop(): Failed to get the list of servers. Retrying " .. tostring(retries) .. "/3.")
                 task.wait(config["retries"]["delay"])
                 pcall(toServer)
             end
         else
-            print("[FAIL] ServerHop(): Error while trying to join.")
+            print("[FAIL] ServerHop(): Failed to get the list of servers.")
         end
     end
     pcall(toServer)
